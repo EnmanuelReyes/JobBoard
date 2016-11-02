@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title th:text="${status}">404</title>
+    <link href="/webjars/gentelella/1.0.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/webjars/gentelella/1.0.0/css/custom.css" type="text/css" rel="stylesheet"/>
+    <link href="/webjars/gentelella/1.0.0/fonts/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <!-- page content -->
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center">
+                    <h1 class="error-number" th:text="${status}">500</h1>
+                    <h2 th:text="${error}">Internal Server Error</h2>
+                    <p th:text="${message}">We track these errors automatically, but if the problem persists feel free to contact us. In the meantime, try refreshing. <a href="#">Report this?</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+</body>
+
+</html>

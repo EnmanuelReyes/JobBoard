@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta http-equiv="Content-type" content="text/html" charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Default Title</title>
+    <link href="/webjars/gentelella/1.0.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/webjars/gentelella/1.0.0/css/custom.css" type="text/css" rel="stylesheet"/>
+    <link href="/webjars/gentelella/1.0.0/css/icheck/flat/green.css" type="text/css" rel="stylesheet"/>
+    <link href="/webjars/gentelella/1.0.0/fonts/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+</head>
+<body class="nav-md" style="  background: #F7F7F7;
+">
+<div class="container body">
+    <div class="main_container">
+        <div class="page-title">
+            <div class="title_left">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-left top_search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for..."/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="title_right">
+                <a href="/job/create" class="btn btn-default" type="button">Post a Job!</a>
+            </div>
+
+
+        </div>
+        <div style="background-color: #fff">
+            <section layout:fragment="content">
+                <!-- page content -->
+
+                <p>Page content goes here</p>
+            </section>
+        </div>
+
+    </div>
+</div>
+
+<!-- iCheck -->
+<script src="/webjars/gentelella/1.0.0/js/icheck/icheck.min.js"></script>
+<script type="text/javascript" layout:fragment="script">
+</script>
+</body>
+</html>
