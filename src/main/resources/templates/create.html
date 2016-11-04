@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorator="layout/template">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template">
 <head lang="en">
     <title>Search</title>
 </head>
@@ -14,65 +14,87 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form id="demo-form2" data-parsley-validate="true" method="post"
+                <form id="demo-form2" th:action="@{/job/create}" th:object="${job}" data-parsley-validate="true"
+                      method="post"
                       class="form-horizontal form-label-left">
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category">Category <span
-                                class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category" th:text="#{category}">Category
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select id="category" class="form-control">
-                                <option value="1">Category one</option>
+                            <select id="category" th:field="*{category.id}" class="form-control" required="required">
+                                <option th:each="category : ${categories}" th:value="${category.id}"
+                                        th:text="${category.name}">Category
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Type <span
-                                class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{type}">Type
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" id="last-name" name="last-name" required="required"
-                                   class="form-control col-md-7 col-xs-12"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name /
-                            Initial</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                   name="middle-name"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div id="gender" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-default" data-toggle-class="btn-primary"
-                                       data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="gender" value="male"/> &nbsp; Male &nbsp;
-                                </label>
-                                <label class="btn btn-primary" data-toggle-class="btn-primary"
-                                       data-toggle-passive-class="btn-default">
-                                    <input type="radio" name="gender" value="female"/> Female
-                                </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div th:each="jobType : ${jobTypes}">
+                                    <span th:text="${jobType.name}"></span>
+                                    <input type="radio" class="iradio_flat" th:field="*{jobType.id}"
+                                           th:value="${jobType.id}" required="required"/>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span
-                                class="required">*</span>
-                        </label>
+                        <label for="company" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{company}">Company</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required"
-                                   type="text"/>
+                            <input id="company" class="form-control col-md-7 col-xs-12" type="text" required="required"
+                                   th:field="*{company}"/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="logo" class="control-label col-md-3 col-sm-3 col-xs-12"
+                               th:text="#{logo}">Logo</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="logo" class="form-control col-md-7 col-xs-12" type="text"
+                                   th:field="*{logo}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="url" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{url}">url</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="url" class="form-control col-md-7 col-xs-12" type="text"
+                                   th:field="*{url}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="position" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{position}">position</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="position" class="form-control col-md-7 col-xs-12" type="text" required="required"
+                                   th:field="*{position}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{location}">location</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="location" class="form-control col-md-7 col-xs-12" type="text" required="required"
+                                   th:field="*{location}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="control-label col-md-3 col-sm-3 col-xs-12"
+                               th:text="#{description}">description</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea id="description" class="form-control col-md-7 col-xs-12"
+                                   th:field="*{description}" required="required"></textarea>
+                        </div>
+                    </div>
+
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <button type="submit" class="btn btn-primary">Cancel</button>
-                            <button type="submit" class="btn btn-success">Submit</button>
+                            <a class="btn btn-primary" th:href="@{/jobs}" th:text="#{cancel}">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success" th:text="#{preview}">Submit</button>
                         </div>
                     </div>
 

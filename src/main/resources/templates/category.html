@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template">
+<head lang="en">
+    <title>Categoria</title>
+</head>
+<body>
+<div class="row" layout:fragment="content">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Categoria</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form id="demo-form2" th:action="@{/category}" th:object="${category}" data-parsley-validate="true"
+                      method="post"
+                      class="form-horizontal form-label-left">
+                    <input th:field="${category.id}" type="hidden"/>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span
+                                class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="name" class="form-control col-md-7 col-xs-12" type="text" th:field="*{name}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <a class="btn btn-primary" th:href="@{/categories}" th:text="#{cancel}">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success" th:text="#{save}">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

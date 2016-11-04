@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,4 +33,10 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         return objectMapper;
 
     }
+
+    @Bean
+    public LocaleResolver localeResolver() {
+        return new SessionLocaleResolver();
+    }
+
 }
