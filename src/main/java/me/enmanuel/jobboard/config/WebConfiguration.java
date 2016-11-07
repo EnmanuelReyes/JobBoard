@@ -2,14 +2,14 @@ package me.enmanuel.jobboard.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
-import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 
 /**
  * Created by IntelliJ IDEA.
@@ -35,8 +35,10 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public LocaleResolver localeResolver() {
-        return new SessionLocaleResolver();
+    public FixedLocaleResolver localeResolver() {
+        FixedLocaleResolver localeResolver = new FixedLocaleResolver();
+
+        return localeResolver;
     }
 
 }

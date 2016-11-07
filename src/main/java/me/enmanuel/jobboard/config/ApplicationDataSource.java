@@ -11,6 +11,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.web.servlet.i18n.FixedLocaleResolver;
+
+import java.util.Locale;
 
 /**
  * Created by IntelliJ IDEA.
@@ -43,9 +46,10 @@ public class ApplicationDataSource {
     }
     @Bean
     public CommandLineRunner initApplicationConfiguration
-            (ApplicationConfigurationRepository applicationConfigurationRepository) {
+            (FixedLocaleResolver fixedLocaleResolver,ApplicationConfigurationRepository applicationConfigurationRepository) {
         return (args) -> {
-            applicationConfigurationRepository.save(new ApplicationConfiguration("ES", 30, 30));
+            applicationConfigurationRepository.save(new ApplicationConfiguration(1,"ES", 30, 30));
+            fixedLocaleResolver.setDefaultLocale(new Locale(applicationConfigurationRepository.findOne(1).getLocale()));
         };
     }
 }

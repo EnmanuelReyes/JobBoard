@@ -2,6 +2,7 @@ package me.enmanuel.jobboard.controller;
 
 import me.enmanuel.jobboard.entity.Job;
 import me.enmanuel.jobboard.service.CategoryService;
+import me.enmanuel.jobboard.service.JobService;
 import me.enmanuel.jobboard.service.JobTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -22,6 +23,8 @@ public class JobController {
 
     @Autowired
     JobTypeService jobTypeService;
+    @Autowired
+    JobService jobService;
 
     @Autowired
     CategoryService categoryService;
@@ -49,12 +52,31 @@ public class JobController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/job/create", method = RequestMethod.POST)
-    public String createJob(ModelAndView modelAndView, Job job) {
-        modelAndView.addObject("job", new Job());
+    @RequestMapping(value = "/job/preview", method = RequestMethod.POST)
+    public ModelAndView previewJob(ModelAndView modelAndView, Job job) {
+        job.setJobType(jobTypeService.findOne(job.getJobType().getId()));
+        modelAndView.addObject("job", job);
         attachJobTypes(modelAndView.getModelMap());
         attachCategories(modelAndView.getModelMap());
-        return "create";
+        modelAndView.setViewName("job");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/job/submit", method = RequestMethod.POST)
+    public ModelAndView createJob(ModelAndView modelAndView, Job job) {
+        jobService.save(job);
+        attachJobTypes(modelAndView.getModelMap());
+        attachCategories(modelAndView.getModelMap());
+        modelAndView.setViewName("jobs");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/job/submit", params = "edit",method = RequestMethod.POST)
+    public ModelAndView editPreviewJob(ModelAndView modelAndView, Job job) {
+        modelAndView.addObject("job", job);
+        attachJobTypes(modelAndView.getModelMap());
+        attachCategories(modelAndView.getModelMap());
+        modelAndView.setViewName("create");
+        return modelAndView;
     }
 
     private void attachCategories(ModelMap modelMap) {

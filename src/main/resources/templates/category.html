@@ -3,14 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/template">
 <head lang="en">
-    <title>Categoria</title>
+    <title th:text="#{category}">Categoria</title>
 </head>
 <body>
 <div class="row" layout:fragment="content">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Categoria</h2>
+                <h2 th:text="#{category}">Categoria</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -20,7 +20,7 @@
                     <input th:field="${category.id}" type="hidden"/>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nombre <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name" th:text="#{name}">Nombre <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">

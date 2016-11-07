@@ -33,6 +33,8 @@ public class Job {
     private String logo;
     @NotEmpty
     private String url;
+    @NotEmpty
+    private String email;
     private String position;
     private String location;
     private String description;
@@ -108,5 +110,13 @@ public class Job {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

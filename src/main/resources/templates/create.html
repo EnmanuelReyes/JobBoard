@@ -14,7 +14,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form id="demo-form2" th:action="@{/job/create}" th:object="${job}" data-parsley-validate="true"
+                <form id="demo-form2" th:action="@{/job/preview}" th:object="${job}" data-parsley-validate="true"
                       method="post"
                       class="form-horizontal form-label-left">
 
@@ -63,6 +63,13 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="url" class="form-control col-md-7 col-xs-12" type="text"
                                    th:field="*{url}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="url" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{email}">url</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="email" class="form-control col-md-7 col-xs-12" type="email"
+                                   th:field="*{email}"/>
                         </div>
                     </div>
                     <div class="form-group">

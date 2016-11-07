@@ -18,7 +18,7 @@ public class JobTypeService implements Service<JobType>{
 
     @Override
     public JobType findOne(Integer var1) {
-        return null;
+        return jobTypeRepository.findOne(var1);
     }
 
     @Override

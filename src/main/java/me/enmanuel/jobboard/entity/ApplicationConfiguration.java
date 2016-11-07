@@ -26,7 +26,8 @@ public class ApplicationConfiguration {
     public ApplicationConfiguration() {
     }
 
-    public ApplicationConfiguration(String locale, Integer frontPageMaximumJobs, Integer jobLifeDays) {
+    public ApplicationConfiguration(Integer id, String locale, Integer frontPageMaximumJobs, Integer jobLifeDays) {
+        this.id = id;
         this.locale = locale;
         this.frontPageMaximumJobs = frontPageMaximumJobs;
         this.jobLifeDays = jobLifeDays;

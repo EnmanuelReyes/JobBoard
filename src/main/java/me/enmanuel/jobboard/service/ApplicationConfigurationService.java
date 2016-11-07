@@ -1,6 +1,9 @@
 package me.enmanuel.jobboard.service;
 
 import me.enmanuel.jobboard.entity.ApplicationConfiguration;
+import me.enmanuel.jobboard.repository.ApplicationConfigurationRepository;
+import me.enmanuel.jobboard.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,14 +13,18 @@ import me.enmanuel.jobboard.entity.ApplicationConfiguration;
  */
 @org.springframework.stereotype.Service
 public class ApplicationConfigurationService implements Service<ApplicationConfiguration> {
+
+    @Autowired
+    ApplicationConfigurationRepository applicationConfigurationRepository;
+
     @Override
     public ApplicationConfiguration findOne(Integer var1) {
-        return null;
+        return applicationConfigurationRepository.findOne(var1);
     }
 
     @Override
     public <S extends ApplicationConfiguration> S save(S var1) {
-        return null;
+        return applicationConfigurationRepository.save(var1);
     }
 
     @Override

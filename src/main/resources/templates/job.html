@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-        layout:decorator="layout/template">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template">
 <head lang="en">
     <title>Search</title>
 </head>
@@ -9,28 +9,56 @@
 <div class="row" layout:fragment="content">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-            <div class="x_title">
-                <h2>Job Name</h2>
-                <br/>
-                <br/>
-                <h5>Location</h5>
+            <form id="demo-form2" th:action="@{/job/submit}" th:object="${job}" data-parsley-validate="true"
+                  method="post">
+                <input type="hidden" th:field="*{category.id}"/>
+                <input type="hidden" th:field="*{jobType.id}"/>
+                <input type="hidden" th:field="*{company}"/>
+                <input type="hidden" th:field="*{logo}"/>
+                <input type="hidden" th:field="*{url}"/>
+                <input type="hidden" th:field="*{email}"/>
+                <input type="hidden" th:field="*{position}"/>
+                <input type="hidden" th:field="*{location}"/>
+                <input type="hidden" th:field="*{description}"/>
+                <div class="x_title">
+                    <h2 th:text="${job.company}">Company</h2>
+                    <br/>
+                    <br/>
+                    <h5 th:text="${job.location}">Location</h5>
 
-            </div>
-            <div class="x_content">
-                <div>
-                    <div class="clearfix"></div>
                 </div>
-                <h4>Web Developer - part time</h4>
-                <div>
-                    <div class="clearfix"></div>
-                </div>
-                <h4>Lorem ipsum dolor sit amet, auctor viverra in sodales vestibulum congue posuere, eos lacus rhoncus
-                    aliquam morbi, ac lacus tristique sit eget habitasse scelerisque. Massa diam placerat nullam purus.
-                    Potenti quis, nec ut non sem dignissim praesent ad, nonummy ullamcorper lacinia nulla, tortor
-                    consequuntur. Sit dolor ultricies, mauris dolor sed neque. Montes libero maecenas metus mi id non,
-                    mauris eget vitae aliquet eu. Est vestibulum dignissim libero, mauris pell</h4>
+                <div class="x_content">
+                    <div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <h4><span th:text="${job.position}">Web Developer</span> - <span th:text="${job.jobType.name}">part time</span></h4>
 
-            </div>
+                    <div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <h4 th:text="${job.description}">Lorem ipsum dolor sit amet, auctor viverra in sodales vestibulum congue posuere, eos lacus
+                        rhoncus
+                        aliquam morbi, ac lacus tristique sit eget habitasse scelerisque. Massa diam placerat nullam
+                        purus.
+                        Potenti quis, nec ut non sem dignissim praesent ad, nonummy ullamcorper lacinia nulla, tortor
+                        consequuntur. Sit dolor ultricies, mauris dolor sed neque. Montes libero maecenas metus mi id
+                        non,
+                        mauris eget vitae aliquet eu. Est vestibulum dignissim libero, mauris pell</h4>
+
+                    <br/>
+                    <h4><i th:text="#{howtoapply}"></i></h4>
+                    <br />
+                    <h4><span th:text="#{sendyourresume}"></span><span th:text="${job.email}"></span></h4>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="submit" name="edit" class="btn btn-primary" th:text="#{edit}">Edit</button>
+                            <button type="submit" class="btn btn-success" th:text="#{save}">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
