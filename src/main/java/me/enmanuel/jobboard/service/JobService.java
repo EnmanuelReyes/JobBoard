@@ -4,6 +4,8 @@ import me.enmanuel.jobboard.entity.Job;
 import me.enmanuel.jobboard.repository.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.UUID;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Enmanuel
@@ -23,6 +25,9 @@ public class JobService  implements Service<Job>{
 
     @Override
     public <S extends Job> S save(S var1) {
+        if (var1.getId() == null) {
+            var1.setToken(UUID.randomUUID().toString().replaceAll("-", "").substring(0, 12));
+        }
         return jobRepository.save(var1);
     }
 
@@ -40,6 +45,10 @@ public class JobService  implements Service<Job>{
     @Override
     public Iterable<Job> findAll() {
         return jobRepository.findAll();
+    }
+
+    public Job findByToken(String token){
+        return jobRepository.findByToken(token);
     }
 }
 

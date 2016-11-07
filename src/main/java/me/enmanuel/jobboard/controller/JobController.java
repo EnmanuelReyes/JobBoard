@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by IntelliJ IDEA.
@@ -62,15 +64,25 @@ public class JobController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/job/submit", method = RequestMethod.POST)
-    public ModelAndView createJob(ModelAndView modelAndView, Job job) {
-        jobService.save(job);
+    @RequestMapping(value = "/job/edit", method = RequestMethod.GET)
+    public ModelAndView modifyJob(@RequestParam String token) {
+        Job job = jobService.findByToken(token);
+        ModelAndView modelAndView = new ModelAndView("job");
+        modelAndView.addObject("job", job);
         attachJobTypes(modelAndView.getModelMap());
         attachCategories(modelAndView.getModelMap());
-        modelAndView.setViewName("jobs");
         return modelAndView;
     }
-    @RequestMapping(value = "/job/submit", params = "edit",method = RequestMethod.POST)
+
+
+    @RequestMapping(value = "/job/submit", method = RequestMethod.POST)
+    public String createJob(Job job, RedirectAttributes redirectAttributes) {
+        jobService.save(job);
+        redirectAttributes.addFlashAttribute("job", job);
+        return "redirect:/jobs";
+    }
+
+    @RequestMapping(value = "/job/submit", params = "edit", method = RequestMethod.POST)
     public ModelAndView editPreviewJob(ModelAndView modelAndView, Job job) {
         modelAndView.addObject("job", job);
         attachJobTypes(modelAndView.getModelMap());

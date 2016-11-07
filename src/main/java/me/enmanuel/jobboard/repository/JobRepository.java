@@ -10,4 +10,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * Time: 1:57 PM
  */
 public interface JobRepository extends PagingAndSortingRepository<Job, Integer> {
+
+    Job findByToken(String token);
 }

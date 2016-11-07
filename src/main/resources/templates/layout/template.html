@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html
+<html xmlns:th="http://www.thymeleaf.org"
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
 <head>
@@ -34,7 +34,7 @@
                 <a href="/job/create" class="btn btn-default" type="button">Post a Job!</a>
             </div>
 
-
+            <h2 th:if="${job?.token}">Token <span th:text="${job?.token}"></span></h2>
         </div>
         <div style="background-color: #fff">
             <section layout:fragment="content">

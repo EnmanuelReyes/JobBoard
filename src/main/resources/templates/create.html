@@ -18,6 +18,10 @@
                       method="post"
                       class="form-horizontal form-label-left">
 
+                    <input type="hidden"
+                           th:field="*{id}"/>
+                    <input type="hidden"
+                           th:field="*{token}"/>
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="category" th:text="#{category}">Category
                         </label>
@@ -66,7 +70,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="url" class="control-label col-md-3 col-sm-3 col-xs-12" th:text="#{email}">url</label>
+                        <label for="url" class="control-label col-md-3 col-sm-3 col-xs-12"
+                               th:text="#{email}">url</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="email" class="form-control col-md-7 col-xs-12" type="email"
                                    th:field="*{email}"/>
@@ -91,7 +96,7 @@
                                th:text="#{description}">description</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <textarea id="description" class="form-control col-md-7 col-xs-12"
-                                   th:field="*{description}" required="required"></textarea>
+                                      th:field="*{description}" required="required"></textarea>
                         </div>
                     </div>
 

@@ -11,6 +11,7 @@
         <div class="x_panel">
             <form id="demo-form2" th:action="@{/job/submit}" th:object="${job}" data-parsley-validate="true"
                   method="post">
+                <input type="hidden" th:field="*{id}"/>
                 <input type="hidden" th:field="*{category.id}"/>
                 <input type="hidden" th:field="*{jobType.id}"/>
                 <input type="hidden" th:field="*{company}"/>
@@ -20,6 +21,7 @@
                 <input type="hidden" th:field="*{position}"/>
                 <input type="hidden" th:field="*{location}"/>
                 <input type="hidden" th:field="*{description}"/>
+                <input type="hidden" th:field="*{token}"/>
                 <div class="x_title">
                     <h2 th:text="${job.company}">Company</h2>
                     <br/>
@@ -31,12 +33,14 @@
                     <div>
                         <div class="clearfix"></div>
                     </div>
-                    <h4><span th:text="${job.position}">Web Developer</span> - <span th:text="${job.jobType.name}">part time</span></h4>
+                    <h4><span th:text="${job.position}">Web Developer</span> - <span th:text="${job.jobType.name}">part time</span>
+                    </h4>
 
                     <div>
                         <div class="clearfix"></div>
                     </div>
-                    <h4 th:text="${job.description}">Lorem ipsum dolor sit amet, auctor viverra in sodales vestibulum congue posuere, eos lacus
+                    <h4 th:text="${job.description}">Lorem ipsum dolor sit amet, auctor viverra in sodales vestibulum
+                        congue posuere, eos lacus
                         rhoncus
                         aliquam morbi, ac lacus tristique sit eget habitasse scelerisque. Massa diam placerat nullam
                         purus.
@@ -47,7 +51,7 @@
 
                     <br/>
                     <h4><i th:text="#{howtoapply}"></i></h4>
-                    <br />
+                    <br/>
                     <h4><span th:text="#{sendyourresume}"></span><span th:text="${job.email}"></span></h4>
 
                     <div class="ln_solid"></div>
