@@ -1,8 +1,10 @@
 package me.enmanuel.jobboard.config;
 
+import me.enmanuel.jobboard.entity.Affiliate;
 import me.enmanuel.jobboard.entity.ApplicationConfiguration;
 import me.enmanuel.jobboard.entity.Category;
 import me.enmanuel.jobboard.entity.JobType;
+import me.enmanuel.jobboard.repository.AffiliateRepository;
 import me.enmanuel.jobboard.repository.ApplicationConfigurationRepository;
 import me.enmanuel.jobboard.repository.CategoryRepository;
 import me.enmanuel.jobboard.repository.JobTypeRepository;
@@ -44,11 +46,19 @@ public class ApplicationDataSource {
             categoryRepository.save(new Category(3, "C#"));
         };
     }
+
+    @Bean
+    public CommandLineRunner initAffiliates(AffiliateRepository affiliateRepository) {
+        return (args) -> {
+            affiliateRepository.save(new Affiliate("Enma", "papa@kekomundo.com", "google.com"));
+        };
+    }
+
     @Bean
     public CommandLineRunner initApplicationConfiguration
-            (FixedLocaleResolver fixedLocaleResolver,ApplicationConfigurationRepository applicationConfigurationRepository) {
+            (FixedLocaleResolver fixedLocaleResolver, ApplicationConfigurationRepository applicationConfigurationRepository) {
         return (args) -> {
-            applicationConfigurationRepository.save(new ApplicationConfiguration(1,"ES", 30, 30));
+            applicationConfigurationRepository.save(new ApplicationConfiguration(1, "ES", 30, 30));
             fixedLocaleResolver.setDefaultLocale(new Locale(applicationConfigurationRepository.findOne(1).getLocale()));
         };
     }

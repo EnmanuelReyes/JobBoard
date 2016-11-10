@@ -3,14 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/template">
 <head lang="en">
-    <title>Categorias</title>
+    <title th:text="#{categories}">Categorias</title>
 </head>
 <body>
 <div class="row" layout:fragment="content">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Categorias</h2>
+                <h2 th:text="#{categories}">Categorias</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <a class="add-link" th:href="@{/category/create}">

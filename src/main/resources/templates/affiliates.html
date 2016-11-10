@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/template">
+<head lang="en">
+    <title th:text="#{affiliates}">Afiliados</title>
 </head>
 <body>
-
+<div class="row" layout:fragment="content">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2 th:text="#{affiliates}">Categorias</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="add-link" th:href="@{/affiliate/create}">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>URL</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="affiliate : ${affiliates}">
+                        <td th:text="${affiliate.id}">ID</td>
+                        <td th:text="${affiliate.name}">Nombre</td>
+                        <td th:text="${affiliate.email}">Email</td>
+                        <td th:text="${affiliate.url}">URL</td>
+                        <td th:text="${affiliate.active}">Email</td>
+                        <td>
+                            <a
+                                    th:href="@{/affiliate/{affiliateId}/(affiliateId=${affiliate.id})}"><i
+                                    class="fa fa-edit"></i></a>
+                            <a
+                                    th:href="@{/affiliate/delete/{affiliateId}/(affiliateId=${affiliate.id})}"><i
+                                    class="fa fa-remove"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

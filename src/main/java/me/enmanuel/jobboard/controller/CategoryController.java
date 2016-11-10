@@ -55,10 +55,10 @@ public class CategoryController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/category/delete/{userId}")
-    public ModelAndView delete(ModelAndView modelAndView, @PathVariable Integer userId,
+    @RequestMapping(value = "/category/delete/{categoryId}")
+    public ModelAndView delete(ModelAndView modelAndView, @PathVariable Integer categoryId,
                                RedirectAttributes redirectAttributes) {
-        categoryService.delete(userId);
+        categoryService.delete(categoryId);
         redirectAttributes.addFlashAttribute("success", "La categoria fue eliminado correctamente");
         modelAndView.setViewName("redirect:/categories");
         return modelAndView;

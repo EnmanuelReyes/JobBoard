@@ -26,8 +26,18 @@ public class Affiliate {
 
     private String name;
     private String email;
+    private String url;
     private String token;
     private Boolean active;
+
+    public Affiliate(String name, String email, String url) {
+        this.name = name;
+        this.email = email;
+        this.url = url;
+    }
+
+    public Affiliate() {
+    }
 
     public Integer getId() {
         return id;
@@ -67,5 +77,13 @@ public class Affiliate {
 
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
